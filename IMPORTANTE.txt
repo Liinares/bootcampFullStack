@@ -1,0 +1,8 @@
+ELIMINAR LA CARPETA OCULTA .GIT
+
+Después de ejecutar: 
+    npx create-react-app appName
+ejecutar la linea: 
+    rm -rf .git
+
+Para eliminar el repositorio que se crea automátciamente
