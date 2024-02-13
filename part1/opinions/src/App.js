@@ -6,7 +6,7 @@ function App() {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
   
-  const showStatics = good != 0 || neutral != 0 || bad != 0 ? true : false;
+  const showStatics = good !== 0 || neutral !== 0 || bad !== 0 ? true : false;
   
   return (
     <div className="App">
