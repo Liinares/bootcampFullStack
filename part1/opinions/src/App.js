@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Opinions from "./Opinions";
+import Antecdotes from "./Anecdotes";
 
 function App() {
   
@@ -12,7 +13,7 @@ function App() {
       case 1:
         return <Opinions />
       case 2:
-        return <p>Contenido para la opción 3</p>;
+        return <Antecdotes />
       default:
         return <p>Opción no reconocida</p>;
     }
