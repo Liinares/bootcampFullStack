@@ -5,14 +5,14 @@ import Persons from "./Persons";
 
 const Phonebook = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', phone: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', phone: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', phone: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', phone: '39-23-6423122', id: 4 }
+    { name: 'Arto Hellas', number: '040-123456', id: 1 },
+    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
   ])
 
   const [newName, setNewName] = useState('')
-  const [newPhone, setNewPhone] = useState('')
+  const [newNumber, setNewewNumber] = useState('')
   const [filter, setFilter] = useState('')
 
   console.log("renderizado")
@@ -20,12 +20,12 @@ const Phonebook = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setPersons(persons.concat({name: newName, phone: newPhone, id: persons.length + 1}))
+    setPersons(persons.concat({name: newName, number: newNumber, id: persons.length + 1}))
     
-    window.alert(`${newName} with number ${newPhone} is already added to phonebook`)
+    window.alert(`${newName} with number ${newNumber} is already added to phonebook`)
 
     setNewName("")
-    setNewPhone("")
+    setNewewNumber("")
 
   }
 
@@ -34,7 +34,7 @@ const Phonebook = () => {
   }
 
   const handlePhoneChange = (event) => {
-    setNewPhone(event.target.value)
+    setNewewNumber(event.target.value)
   }
 
   const handleFilterChange = (event) => {
@@ -51,7 +51,7 @@ const Phonebook = () => {
         handleNameChange={handleNameChange} 
         handlePhoneChange={handlePhoneChange}
         newName={newName}
-        newPhone={newPhone}/>
+        newNumber={newNumber}/>
       
       <Persons persons={persons} filter={filter}/>
     </div>
