@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 import Filter from "./Filter";
 import Personform from "./Personform";
 import Persons from "./Persons";
-import { getAllNotes } from "./services/getAlllNotes";
+import { getAllPersons } from "./services/getAllPersons";
 
 const Phonebook = () => {
   const [persons, setPersons] = useState([])
@@ -10,7 +10,7 @@ const Phonebook = () => {
   useEffect(() => {
     console.log("Fetch en effect")
 
-    getAllNotes()
+    getAllPersons()
       .then(notes => {
         setPersons(notes)
       })
