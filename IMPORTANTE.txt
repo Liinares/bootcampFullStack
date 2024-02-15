@@ -6,3 +6,10 @@ ejecutar la linea:
     rm -rf .git
 
 Para eliminar el repositorio que se crea automátciamente
+
+Para ejecutar el servicio de la parte2, en una terminal tenemos que ejecutar esta línea
+    npx json-server --port 3889 --watch db.json
+     
+Esto hará que en la URL 
+    http://localhost:3889/persons
+recibas el db.json que hay en la part2 del proyecto
