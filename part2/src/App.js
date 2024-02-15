@@ -6,11 +6,6 @@ function App() {
   
   const [mode, setMode] = useState(0);
 
-  fetch("http://localhost:3889/persons")
-    .then(response => {
-      console.log(response)
-    })
-
   const elegirModo = () => {
     switch (mode) {
       case 0:
