@@ -8,7 +8,7 @@ const CountryDetails = ({country}) => {
             <p>Languages:</p>
             <ul>
                 {Object.entries(country.languages).map(([key,value]) => {
-                    return(<li>{value}</li>)
+                    return(<li key={value}>{value}</li>)
                 })}
             </ul>
             <img src={country.flags.png} alt="Country Flag" />
