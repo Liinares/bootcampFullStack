@@ -1,9 +1,6 @@
 import { useState } from "react"
 
 const Antecdotes = () => {
-
-    console.log("Rendrizado")
-
     function obtenerNumeroAleatorio() {
         // Math.random() devuelve un número decimal entre 0 (inclusive) y 1 (exclusivo)
         const numeroDecimal = Math.random();

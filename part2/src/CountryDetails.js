@@ -1,6 +1,4 @@
 const CountryDetails = ({country}) => {
-    console.log("COUNTRY FILTERED ", country.flags.png)
-    console.log(typeof country.image)
     return(
         <div>
             <h2>CountryDetails</h2>

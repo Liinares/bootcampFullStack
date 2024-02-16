@@ -15,8 +15,6 @@ const Phonebook = () => {
   const [filter, setFilter] = useState('')
 
   useEffect(() => {
-    console.log("Fetch en effect")
-
     getAllPersons()
       .then(notes => {
         setPersons(notes)
@@ -60,7 +58,6 @@ const Phonebook = () => {
   
         createPerson(personToCreate)
         .then(response => {
-          console.log(response.id)
           setPersons(persons.concat({name: newName, number: newNumber, id: response.id}))
         })
   
@@ -85,7 +82,7 @@ const Phonebook = () => {
   }
 
   const handleDeletePerson = (id, name) => {
-    if(window.confirm(`Detela ${name}?`)){
+    if(window.confirm(`Delete ${name}?`)){
       deletePerson(id)
         .then(response => {
           console.log(response)
