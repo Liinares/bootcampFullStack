@@ -9,7 +9,7 @@ const Persons = ({persons, filter, handleDeletePerson}) => {
                 })
                 .map((person) => {
                     return(
-                        <li key={person.id} >
+                        <li className="persons" key={person.id} >
                             {person.name}, {person.number}, <button onClick={() => {handleDeletePerson(person.id, person.name)}}>Delete</button>
                         </li>
                     )
