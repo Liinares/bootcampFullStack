@@ -3,6 +3,7 @@ import Filter from "./Filter";
 import Personform from "./Personform";
 import Persons from "./Persons";
 import { getAllPersons } from "./services/getAllPersons";
+import { createPerson } from "./services/createPerson";
 
 const Phonebook = () => {
   const [persons, setPersons] = useState([])
@@ -26,13 +27,27 @@ const Phonebook = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setPersons(persons.concat({name: newName, number: newNumber, id: persons.length + 1}))
+    if(newName.length === 0 || newNumber.length === 0){
+      window.alert(`Complete all fields`)
+    }else{
+
+      const personToCreate = {
+        name: newName,
+        number: newNumber
+      }
+
+      createPerson(personToCreate)
+      .then(response => {
+        console.log(response.id)
+        setPersons(persons.concat({name: newName, number: newNumber, id: response.id}))
+      })
+
     
     window.alert(`${newName} with number ${newNumber} is already added to phonebook`)
 
     setNewName("")
     setNewewNumber("")
-
+    }
   }
 
   const handleNameChange = (event) => {

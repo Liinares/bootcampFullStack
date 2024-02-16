@@ -6,7 +6,4 @@ export const getAllPersons = () => {
         const { data } = response;
         return data;
       })
-      .catch((error) => {
-        console.error('Axios error:', error);
-      })
 }
