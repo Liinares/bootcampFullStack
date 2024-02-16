@@ -4,9 +4,15 @@ import Personform from "./Personform";
 import Persons from "./Persons";
 import { getAllPersons } from "./services/getAllPersons";
 import { createPerson } from "./services/createPerson";
+import { deletePerson } from "./services/deletePerson";
+import { updatePerson } from "./services/updatePerson";
 
 const Phonebook = () => {
+
   const [persons, setPersons] = useState([])
+  const [newName, setNewName] = useState('')
+  const [newNumber, setNewewNumber] = useState('')
+  const [filter, setFilter] = useState('')
 
   useEffect(() => {
     console.log("Fetch en effect")
@@ -16,37 +22,53 @@ const Phonebook = () => {
         setPersons(notes)
       })
   }, [])
-  
 
-  const [newName, setNewName] = useState('')
-  const [newNumber, setNewewNumber] = useState('')
-  const [filter, setFilter] = useState('')
-
-  console.log("renderizado")
-  
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if(newName.length === 0 || newNumber.length === 0){
       window.alert(`Complete all fields`)
     }else{
+      
+      const foundPerson = persons.find(person => person.name.toLowerCase() === newName.toLowerCase());
 
-      const personToCreate = {
-        name: newName,
-        number: newNumber
+      if(foundPerson){
+        if( window.confirm(`${newName} is already added to phonebook, replace old number with a new one?`)){
+          const personToUpdate = {
+            name: foundPerson.name,
+            number: newNumber,
+            id: foundPerson.id
+          }
+
+          updatePerson(personToUpdate)
+            .then(response => {
+              const updatedPersons = persons.map(person => {
+                if (person.name.toLowerCase() === personToUpdate.name.toLowerCase()) {
+                    return personToUpdate;
+                }
+                return person;
+              })
+
+              setPersons(updatedPersons)
+            })
+        }
+      }else{
+        const personToCreate = {
+          name: newName,
+          number: newNumber
+        }
+  
+        createPerson(personToCreate)
+        .then(response => {
+          console.log(response.id)
+          setPersons(persons.concat({name: newName, number: newNumber, id: response.id}))
+        })
+  
+        window.alert(`${newName} with number ${newNumber} is already added to phonebook`)
       }
 
-      createPerson(personToCreate)
-      .then(response => {
-        console.log(response.id)
-        setPersons(persons.concat({name: newName, number: newNumber, id: response.id}))
-      })
-
-    
-    window.alert(`${newName} with number ${newNumber} is already added to phonebook`)
-
-    setNewName("")
-    setNewewNumber("")
+      setNewName("")
+      setNewewNumber("")
     }
   }
 
@@ -62,10 +84,21 @@ const Phonebook = () => {
     setFilter(event.target.value)
   }
 
+  const handleDeletePerson = (id, name) => {
+    if(window.confirm(`Detela ${name}?`)){
+      deletePerson(id)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(`Error ${error}`)
+        })
+    }
+  }
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h1>Phonebook</h1>
       <Filter filter={filter} handleFilterChange={handleFilterChange}/>
       
       <Personform handleSubmit={handleSubmit} 
@@ -74,7 +107,7 @@ const Phonebook = () => {
         newName={newName}
         newNumber={newNumber}/>
       
-      <Persons persons={persons} filter={filter}/>
+      <Persons persons={persons} filter={filter} handleDeletePerson={handleDeletePerson}/>
     </div>
   )
 }

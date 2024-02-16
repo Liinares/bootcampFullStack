@@ -46,14 +46,9 @@
       "number": "123"
     },
     {
-      "id": "d6f4",
       "name": "Lucia",
-      "number": "321"
-    },
-    {
-      "id": "e3cf",
-      "name": "Andres",
-      "number": "123"
+      "number": "123",
+      "id": "d6f4"
     }
   ]
 }
