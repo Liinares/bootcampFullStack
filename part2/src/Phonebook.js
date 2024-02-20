@@ -16,8 +16,8 @@ const Phonebook = () => {
 
   useEffect(() => {
     getAllPersons()
-      .then(notes => {
-        setPersons(notes)
+      .then(persons => {
+        setPersons(persons)
       })
   }, [])
 
