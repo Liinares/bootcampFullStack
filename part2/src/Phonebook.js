@@ -21,17 +21,18 @@ const Phonebook = () => {
       })
   }, [])
 
+  console.log(persons)
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if(newName.length === 0 || newNumber.length === 0){
       window.alert(`Complete all fields`)
     }else{
-      
       const foundPerson = persons.find(person => person.name.toLowerCase() === newName.toLowerCase());
 
       if(foundPerson){
-        if( window.confirm(`${newName} is already added to phonebook, replace old number with a new one?`)){
+        if( window.confirm(`${newName} is already added to phonebook, replace old number(${foundPerson.number}) with the new one(${newNumber})?`)){
           const personToUpdate = {
             name: foundPerson.name,
             number: newNumber,
@@ -61,7 +62,7 @@ const Phonebook = () => {
           setPersons(persons.concat({name: newName, number: newNumber, id: response.id}))
         })
   
-        window.alert(`${newName} with number ${newNumber} is already added to phonebook`)
+        window.alert(`${newName} with number ${newNumber} has been added to phonebook`)
       }
 
       setNewName("")
@@ -85,7 +86,9 @@ const Phonebook = () => {
     if(window.confirm(`Delete ${name}?`)){
       deletePerson(id)
         .then(response => {
-          console.log(response)
+          const newPersons = persons.filter(pers => pers.id !== id)
+
+          setPersons(newPersons)
         })
         .catch(error => {
           console.log(`Error ${error}`)
