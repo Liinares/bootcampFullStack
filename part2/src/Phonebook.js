@@ -31,7 +31,7 @@ const Phonebook = () => {
     }else{
       const foundPerson = persons.find(person => person.name.toLowerCase() === newName.toLowerCase());
 
-      if(foundPerson){
+      if (foundPerson) {
         if( window.confirm(`${newName} is already added to phonebook, replace old number(${foundPerson.number}) with the new one(${newNumber})?`)){
           const personToUpdate = {
             name: foundPerson.name,
@@ -51,7 +51,7 @@ const Phonebook = () => {
               setPersons(updatedPersons)
             })
         }
-      }else{
+      } else {
         const personToCreate = {
           name: newName,
           number: newNumber
@@ -60,9 +60,12 @@ const Phonebook = () => {
         createPerson(personToCreate)
         .then(response => {
           setPersons(persons.concat({name: newName, number: newNumber, id: response.id}))
+
+          window.alert(`${newName} with number ${newNumber} has been added to phonebook`)
         })
-  
-        window.alert(`${newName} with number ${newNumber} has been added to phonebook`)
+        .catch(error => {
+          window.alert(error.response.data.error)
+        })
       }
 
       setNewName("")
