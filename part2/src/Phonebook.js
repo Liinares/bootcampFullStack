@@ -50,6 +50,9 @@ const Phonebook = () => {
 
               setPersons(updatedPersons)
             })
+            .catch(error => {
+              window.alert(error.response.data.error)
+            })
         }
       } else {
         const personToCreate = {

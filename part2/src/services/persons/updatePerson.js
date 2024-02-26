@@ -6,8 +6,4 @@ export const updatePerson = ({ name, number, id }) => {
             const { data } = response;
             return data;
         })
-        .catch(error => {
-            console.error('Error found: ', error);
-            return error;
-        });
 };
