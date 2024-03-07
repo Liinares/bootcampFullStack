@@ -77,6 +77,8 @@ const Blogs = () => {
             const blog = await createBlog(blogToCreate, token)
 
             console.log(blog)
+
+            setBlogs(blogs.concat(blog))
             setTitle('')
             setAuthor('')
             setPassword('')
