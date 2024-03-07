@@ -2,10 +2,10 @@ import { useState, useEffect} from "react";
 import Filter from "./Filter";
 import Personform from "./Personform";
 import Persons from "./Persons";
-import { getAllPersons } from "./services/persons/getAllPersons";
-import { createPerson } from "./services/persons/createPerson";
-import { deletePerson } from "./services/persons/deletePerson";
-import { updatePerson } from "./services/persons/updatePerson";
+import { getAllPersons } from "../services/persons/getAllPersons";
+import { createPerson } from "../services/persons/createPerson";
+import { deletePerson } from "../services/persons/deletePerson";
+import { updatePerson } from "../services/persons/updatePerson";
 
 const Phonebook = () => {
 

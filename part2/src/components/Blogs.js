@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getAllBlogs } from "./services/blogs/getAllBlogs";
-import { loginService } from "./services/login/login";
+import { getAllBlogs } from "../services/blogs/getAllBlogs";
+import { loginService } from "../services/login/login";
 import LoginForm from "./LoginForm";
 import BlogForm from "./Blogform";
-import { createBlog } from "./services/blogs/createBlog";
+import { createBlog } from "../services/blogs/createBlog";
 
 const Blogs = () => {
     const [username, setUsername] = useState('') 
@@ -90,6 +90,7 @@ const Blogs = () => {
     
     return(
       <div>
+        <h1>Blogs</h1>
         <label style={{ color: 'red' }}>{error}</label>
         {user === null
             ? 
