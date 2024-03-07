@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { getAllBlogs } from "../services/blogs/getAllBlogs";
-import { loginService } from "../services/login/login";
 import LoginForm from "./LoginForm";
 import BlogForm from "./Blogform";
 import { createBlog } from "../services/blogs/createBlog";
 
 const Blogs = () => {
-    const [username, setUsername] = useState('') 
-    const [password, setPassword] = useState('') 
     const [blogs, setBlogs] = useState([])
     const [user, setUser] = useState(null)
     const [title, setTitle] = useState('')
@@ -34,29 +31,6 @@ const Blogs = () => {
         console.log(`Delete ${title}`)
     }
 
-    const handleLoginSubmit = async (event) => {
-        event.preventDefault()
-
-        try{
-            const user = await loginService({
-                username,
-                password
-            })
-
-            window.localStorage.setItem(
-                'loggedBlogAppUser', JSON.stringify(user)
-            )
-    
-            setUser(user)
-            setUsername('')
-            setPassword('')
-        }
-        catch(e){
-            console.error(e)
-            setError('Login error')
-        }
-    }
-
     const handleLogout = () => {
         setUser(null)
         window.localStorage.removeItem('loggedBlogAppUser')
@@ -81,7 +55,6 @@ const Blogs = () => {
             setBlogs(blogs.concat(blog))
             setTitle('')
             setAuthor('')
-            setPassword('')
         } catch(e){
             console.log(e)
             setError('Create blog error')
@@ -95,15 +68,8 @@ const Blogs = () => {
         {user === null
             ? 
             <LoginForm 
-                handleLoginSubmit={handleLoginSubmit}
-                username={username}
-                password={password}
-                handleUsernameChange={
-                    event => setUsername(event.target.value)
-                }
-                handlePasswordChange={
-                    event => setPassword(event.target.value)
-                }
+                setUser={setUser}
+                setError={setError}
             />
             : 
             <BlogForm
