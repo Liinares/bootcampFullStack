@@ -98,8 +98,12 @@ const Blogs = () => {
                 handleLoginSubmit={handleLoginSubmit}
                 username={username}
                 password={password}
-                setUsername={setUsername}
-                setPassword={setPassword}
+                handleUsernameChange={
+                    event => setUsername(event.target.value)
+                }
+                handlePasswordChange={
+                    event => setPassword(event.target.value)
+                }
             />
             : 
             <BlogForm

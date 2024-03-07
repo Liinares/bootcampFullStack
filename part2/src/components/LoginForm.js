@@ -1,25 +1,47 @@
-const LoginForm = ({handleLoginSubmit, username, password, setUsername, setPassword}) => {
+import { useState } from "react";
+
+const LoginForm = ({handleLoginSubmit, username, password, handleUsernameChange, handlePasswordChange}) => {
+    const [loginVisible, setLoginVisible] = useState(false)
+
+    const hideWhenVisible = {display: loginVisible ? 'none' : ''}
+    const showWhenVisible = {display: loginVisible ? '' : 'none'}
+
     return(
         <div>
-            <form onSubmit={handleLoginSubmit}>
-                <input
-                    type="text"
-                    value={username}
-                    name="Username"
-                    placeholder="Username"
-                    onChange={event => setUsername(event.target.value)}
-                />
-                <input
-                    type="password"
-                    value={password}
-                    name="Password"
-                    placeholder="Password"
-                    onChange={event => setPassword(event.target.value)}
-                />
-                <button>
-                    Login
+            <div style={hideWhenVisible}>
+                <button onClick={() => setLoginVisible(true)}>
+                    Show login 
                 </button>
-            </form>
+            </div>
+
+            <div style={showWhenVisible}>
+                <form onSubmit={handleLoginSubmit}>
+                    <input
+                        type="text"
+                        value={username}
+                        name="Username"
+                        placeholder="Username"
+                        onChange={handleUsernameChange}
+                    />
+                    <input
+                        type="password"
+                        value={password}
+                        name="Password"
+                        placeholder="Password"
+                        onChange={handlePasswordChange}
+                    />
+                    <div>
+                        <button>
+                            Login
+                        </button>
+                    </div>
+                </form>
+                <div>
+                    <button onClick={() => setLoginVisible(false)}>
+                        Hide Login 
+                    </button>
+                </div>
+            </div>
         </div>
     )
 } 
