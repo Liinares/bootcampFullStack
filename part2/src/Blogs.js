@@ -3,6 +3,7 @@ import { getAllBlogs } from "./services/blogs/getAllBlogs";
 import { loginService } from "./services/login/login";
 import LoginForm from "./LoginForm";
 import BlogForm from "./Blogform";
+import { createBlog } from "./services/blogs/createBlog";
 
 const Blogs = () => {
     const [username, setUsername] = useState('') 
@@ -21,6 +22,14 @@ const Blogs = () => {
           })
     }, [])
 
+    useEffect(() => {
+        const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
+        if (loggedUserJSON) {
+            const user = JSON.parse(loggedUserJSON)
+            setUser(user)
+        }
+    }, [])
+
     const handleDeleteBlog = (id, title) => {
         console.log(`Delete ${title}`)
     }
@@ -33,9 +42,12 @@ const Blogs = () => {
                 username,
                 password
             })
+
+            window.localStorage.setItem(
+                'loggedBlogAppUser', JSON.stringify(user)
+            )
     
             setUser(user)
-            console.log(user)
             setUsername('')
             setPassword('')
         }
@@ -43,12 +55,35 @@ const Blogs = () => {
             console.error(e)
             setError('Login error')
         }
-        
     }
 
-    const handleBlogSubmit = (event) => {
+    const handleLogout = () => {
+        setUser(null)
+        window.localStorage.removeItem('loggedBlogAppUser')
+    }
+
+    const handleBlogSubmit = async (event) => {
         event.preventDefault()
         console.log('Blog submit')
+        try{
+            const blogToCreate = {
+                title,
+                author,
+                url
+            }
+
+            const { token } = user
+
+            const blog = await createBlog(blogToCreate, token)
+
+            console.log(blog)
+            setTitle('')
+            setAuthor('')
+            setPassword('')
+        } catch(e){
+            console.log(e)
+            setError('Create blog error')
+        }
     }
     
     return(
@@ -66,6 +101,7 @@ const Blogs = () => {
             : 
             <BlogForm
                 handleBlogSubmit={handleBlogSubmit}
+                handleLogout={handleLogout}
                 title={title}
                 setTitle={setTitle}
                 author={author}

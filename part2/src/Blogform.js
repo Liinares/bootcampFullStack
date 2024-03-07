@@ -1,4 +1,4 @@
-const BlogForm = ({handleBlogSubmit, title, setTitle, author, setAuthor, url, setUrl}) => {
+const BlogForm = ({handleBlogSubmit, handleLogout, title, setTitle, author, setAuthor, url, setUrl}) => {
     return(
         <div>
             <h3> Create new Blog</h3>
@@ -28,6 +28,9 @@ const BlogForm = ({handleBlogSubmit, title, setTitle, author, setAuthor, url, se
                     Create new blog
                 </button>
             </form>
+            <button onClick={handleLogout}>
+                Cerrar sesión
+            </button>
         </div>
     )
 }
