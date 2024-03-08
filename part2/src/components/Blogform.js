@@ -1,4 +1,4 @@
-import { Togglable } from "./Togglable"
+import Togglable from "./Togglable"
 import { createBlog } from "../services/blogs/createBlog";
 import { useRef, useState } from "react"
 
