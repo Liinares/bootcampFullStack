@@ -1,8 +1,10 @@
 import Togglable from "./Togglable";
 import { useState } from "react";
 import { loginService } from "../services/login/login";
+import PropTypes from 'prop-types';
 
-const LoginForm = ({setUser, setError}) => {
+
+const LoginForm = ({handleSetUser, handleSetError}) => {
     const [username, setUsername] = useState('') 
     const [password, setPassword] = useState('') 
 
@@ -19,13 +21,13 @@ const LoginForm = ({setUser, setError}) => {
                 'loggedBlogAppUser', JSON.stringify(user)
             )
     
-            setUser(user)
+            handleSetUser(user)
             setUsername('')
             setPassword('')
         }
         catch(e){
             console.error(e)
-            setError('Login error')
+            handleSetError('Login error')
         }
     }
 
@@ -55,5 +57,10 @@ const LoginForm = ({setUser, setError}) => {
         </Togglable>
     )
 } 
+
+LoginForm.propTypes = {
+    handleSetUser: PropTypes.func.isRequired,
+    handleSetError: PropTypes.func.isRequired
+}
 
 export default LoginForm

@@ -39,8 +39,8 @@ const Blogs = () => {
         {user === null
             ? 
             <LoginForm 
-                setUser={setUser}
-                setError={setError}
+                handleSetUser={user => setUser(user)}
+                handleSetError={error => setError(error)}
             />
             : 
             <BlogForm
