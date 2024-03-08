@@ -1,9 +1,43 @@
 import { Togglable } from "./Togglable"
+import { createBlog } from "../services/blogs/createBlog";
+import { useRef, useState } from "react"
 
-const BlogForm = ({handleBlogSubmit, handleLogout, title, setTitle, author, setAuthor, url, setUrl}) => {
+const BlogForm = ({handleLogout, user, blogs, setBlogs, setError}) => {
+    const togglableRef = useRef()
+
+    const [title, setTitle] = useState('')
+    const [author, setAuthor] = useState('')
+    const [url, setUrl] = useState('')
+
+    const handleBlogSubmit = async (event) => {
+        event.preventDefault()
+        console.log('Blog submit')
+        try{
+            const blogToCreate = {
+                title,
+                author,
+                url
+            }
+
+            const { token } = user
+
+            const blog = await createBlog(blogToCreate, token)
+
+            console.log(blog)
+
+            setBlogs(blogs.concat(blog))
+            setTitle('')
+            setAuthor('')
+            togglableRef.current.toggleVisibility()
+        } catch(e){
+            console.log(e)
+            setError('Create blog error')
+        }
+    }
+
     return(
         <div>
-            <Togglable labelButton={'create blog'}>
+            <Togglable labelButton={'create blog'} ref={togglableRef}>
                 <div>
                     <h3> Create new Blog</h3>
                     <form onSubmit={handleBlogSubmit}>
@@ -38,8 +72,6 @@ const BlogForm = ({handleBlogSubmit, handleLogout, title, setTitle, author, setA
                 Cerrar sesión
             </button>
         </div>
-        
-       
     )
 }
 
