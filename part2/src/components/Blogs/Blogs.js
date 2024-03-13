@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllBlogs } from "../services/blogs/getAllBlogs";
+import { getAllBlogs } from "../../services/blogs/getAllBlogs";
 import LoginForm from "./LoginForm";
 import BlogForm from "./Blogform";
 

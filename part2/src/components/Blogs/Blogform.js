@@ -1,5 +1,5 @@
-import Togglable from "./Togglable"
-import { createBlog } from "../services/blogs/createBlog";
+import Togglable from "../Togglable"
+import { createBlog } from "../../services/blogs/createBlog";
 import { useRef, useState } from "react"
 
 const BlogForm = ({handleLogout, user, blogs, setBlogs, setError}) => {

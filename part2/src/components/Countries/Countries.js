@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import { getCountries } from '../services/countries/getCountries'
+import { getCountries } from '../../services/countries/getCountries'
 import CountryDetails from './CountryDetails'
 
 const Countries = () => {

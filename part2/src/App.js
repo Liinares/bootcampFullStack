@@ -1,8 +1,8 @@
 import { useState } from "react";
-import InfoCourses from "./components/InfoCourses";
-import Phonebook from "./components/Phonebook";
-import Countries from "./components/Countries";
-import Blogs from "./components/Blogs";
+import InfoCourses from "./components/Courses/InfoCourses";
+import Phonebook from "./components/Phonebook/Phonebook";
+import Countries from "./components/Countries/Countries";
+import Blogs from "./components/Blogs/Blogs";
 
 function App() {
   
