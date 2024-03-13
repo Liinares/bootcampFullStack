@@ -1,14 +1,18 @@
-const Blogs = ({blogs, handleDeleteBlog}) => {
+import Blog from "./Blog"
+
+const Blogs = ({blogs}) => {
+    const handleDeleteBlog = (id, title) => {
+        console.log(`Delete ${title}`)
+    }
+
     return(
         <div>
             <h3>Blogs</h3>
                 <ul>
                     {blogs
-                    .map((blogs) => {
+                    .map((blog) => {
                         return(
-                            <li className="blogs" key={blogs.id} >
-                                {blogs.title}, {blogs.author}, <button onClick={() => {handleDeleteBlog(blogs.id, blogs.title)}}>Delete</button>
-                            </li>
+                            <Blog blog={blog} handleDeleteBlog={handleDeleteBlog}/>
                         )
                     })}
                 </ul>

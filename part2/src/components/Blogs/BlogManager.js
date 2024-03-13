@@ -24,10 +24,6 @@ const BlogManager = () => {
         }
     }, [])
 
-    const handleDeleteBlog = (id, title) => {
-        console.log(`Delete ${title}`)
-    }
-
     const handleLogout = () => {
         setUser(null)
         window.localStorage.removeItem('loggedBlogAppUser')
@@ -53,7 +49,7 @@ const BlogManager = () => {
             />
         }
 
-        <Blogs blogs={blogs} handleDeleteBlog={handleDeleteBlog}/>
+        <Blogs blogs={blogs}/>
       </div>
     )
 }
