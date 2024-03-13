@@ -2,24 +2,22 @@ import { useState } from "react";
 import InfoCourses from "./components/Courses/InfoCourses";
 import Phonebook from "./components/Phonebook/Phonebook";
 import Countries from "./components/Countries/Countries";
-import Blogs from "./components/Blogs/Blogs";
+import BlogManager from "./components/Blogs/BlogManager";
 
 function App() {
   
-  const [mode, setMode] = useState(0);
+  const [mode, setMode] = useState(3);
 
-  const elegirModo = () => {
+  const selectMode = () => {
     switch (mode) {
       case 0:
-        return <p> Elige una de las opciones</p>
-      case 1:
         return <InfoCourses />
-      case 2:
+      case 1:
         return <Phonebook />
-      case 3:
+      case 2:
         return <Countries />
-      case 4:
-        return <Blogs />
+      case 3:
+        return <BlogManager />
       default:
         return <p>Opción no reconocida</p>;
     }
@@ -27,14 +25,13 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={() => {setMode(0)}}>Nada</button>
-      <button onClick={() => {setMode(1)}}>Courses</button>
-      <button onClick={() => {setMode(2)}}>Phonebook</button>
-      <button onClick={() => {setMode(3)}}>Countries</button>
-      <button onClick={() => {setMode(4)}}>Blogs</button>
+      <button onClick={() => {setMode(0)}}>Courses</button>
+      <button onClick={() => {setMode(1)}}>Phonebook</button>
+      <button onClick={() => {setMode(2)}}>Countries</button>
+      <button onClick={() => {setMode(3)}}>Blogs</button>
 
 
-      {elegirModo()}
+      {selectMode()}
     </div>
   );
 }
